@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "777287434761",
+    "firebase_url": "https://unition-7c4a8.firebaseio.com",
+    "project_id": "unition-7c4a8",
+    "storage_bucket": "unition-7c4a8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:777287434761:android:a2c17bd89512cc90",
+        "android_client_info": {
+          "package_name": "com.jdhaworthwheatman.unition"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "777287434761-052kur275mbmmns9l44el24pd636bdpn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jdhaworthwheatman.unition",
+            "certificate_hash": "b253c828ad93498e84fabe79b36ef19e1a622c0e"
+          }
+        },
+        {
+          "client_id": "777287434761-9fhgjo16b5qnc7sjoqvjf3pi23d1cpca.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUbA4K6KK-U6dL2Pw0eumIZ6FDXTYYhTQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "777287434761-9fhgjo16b5qnc7sjoqvjf3pi23d1cpca.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

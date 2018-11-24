@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">Unition</string>
+    <string name="title_activity__unition__hub">Activity_Unition_Hub</string>
+    <string name="title_home">Home</string>
+    <string name="title_connections">Links</string>
+    <string name="title_inboxs">Inbox</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_payment">Payment</string>
+
+    <string-array name="uni_list">
+        <item>University of Birmingham</item>
+        <item>University of Bristol</item>
+        <item>University of Cambridge</item>
+        <item>Cardiff University</item>
+        <item>Durham University</item>
+        <item>University of Edinburgh</item>
+        <item>University of Exeter</item>
+        <item>University of Glasgow</item>
+        <item>Imperial College London</item>
+        <item>King\'s College London</item>
+        <item>University of Leeds</item>
+        <item>University of Liverpool</item>
+        <item>LSE (London School of Economics and Political Science)</item>
+        <item>University of Manchester</item>
+        <item>Newcastle University</item>
+        <item>University of Nottingham</item>
+        <item>University of Oxford</item>
+        <item>Queen Mary University of London</item>
+        <item>Queen\'s University Belfast</item>
+        <item>University of Sheffield</item>
+        <item>University of Southampton</item>
+        <item>UCL (University College London)</item>
+        <item>University of Warwick</item>
+        <item>University of York</item>
+    </string-array>
+
+    <string-array name="skills_list">
+        <item>Android App Development</item>
+        <item>Animation</item>
+        <item>Audio Editing</item>
+        <item>C</item>
+        <item>C#</item>
+        <item>C++</item>
+        <item>CSS</item>
+        <item>Game Design</item>
+        <item>GitHub</item>
+        <item>HTML</item>
+        <item>IOS App Development</item>
+        <item>Java</item>
+        <item>Javascript</item>
+        <item>PHP</item>
+        <item>PhotoShop</item>
+        <item>Python</item>
+        <item>Video Editing</item>
+        <item>Web Design</item>
+        <item>WordPress</item>
+
+    </string-array>
+</resources>
