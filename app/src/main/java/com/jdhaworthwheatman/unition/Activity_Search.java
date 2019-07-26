@@ -2,7 +2,6 @@ package com.jdhaworthwheatman.unition;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.TypedArray;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -10,17 +9,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.common.primitives.Ints;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -38,7 +34,7 @@ public class Activity_Search extends AppCompatActivity implements AdapterView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity__search);
 
         final ListView mylistview = findViewById(R.id.lv_search);
 
@@ -56,6 +52,9 @@ public class Activity_Search extends AppCompatActivity implements AdapterView.On
         //get skill from intent
         Intent intent = getIntent();
         String skill_val = intent.getStringExtra("skill");
+
+        TextView tv_skill_title = findViewById(R.id.tv_search_title);
+        tv_skill_title.setText(skill_val);
 
         Toast.makeText(getBaseContext(), "Accessing our database...", Toast.LENGTH_SHORT).show();
 

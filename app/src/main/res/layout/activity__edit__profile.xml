@@ -4,153 +4,205 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground">
-
-    <ImageView
-        android:id="@+id/iv_edit_my_profile_pic"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_alignParentTop="true"
-        android:layout_margin="20dp"
-        android:layout_centerHorizontal="true"
-        app:srcCompat="@mipmap/ic_launcher_round" />
-
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/etxt_edit_my_name_layout"
-        android:layout_below="@+id/iv_edit_my_profile_pic"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:textColorHint="@color/white"
-        android:background="@color/colorPrimaryDark">
-
-        <EditText
-            android:id="@+id/etxt_edit_my_name"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:maxLines="1"
-            android:textSize="12sp"
-            android:textColor="@android:color/white"
-            android:hint="Name:"/>
-
-    </android.support.design.widget.TextInputLayout>
+    android:background="@color/white">
 
     <LinearLayout
+        android:id="@+id/edit_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etxt_edit_my_name_layout"
-        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimaryDark"
         android:orientation="horizontal"
-        android:id="@+id/my_profile_name_layout">
+        android:gravity="center_vertical">
 
-
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:textColorHint="@color/white"
-            android:background="@color/colorPrimaryDark">
+            android:textSize="20sp"
+            android:padding="10dp"
+            android:textColor="@android:color/white"
+            android:text="Edit my profile"/>
 
-            <EditText
-                android:id="@+id/etxt_edit_my_degree"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:maxLines="1"
-                android:textSize="12sp"
-                android:textColor="@android:color/white"
-                android:hint="My Degree:"/>
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
+        <ImageButton
+            android:id="@+id/ib_save_my_profile"
+            android:src="@mipmap/ic_done_icon"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="2.5"
-            android:textColorHint="@color/white"
-            android:background="@color/colorPrimaryDark">
-
-            <EditText
-                android:id="@+id/etxt_edit_my_cost"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:maxLines="1"
-                android:textSize="12sp"
-                android:textColor="@android:color/white"
-                android:hint="I Charge: £"
-                android:inputType="numberDecimal"/>
-        </android.support.design.widget.TextInputLayout>
+            android:layout_weight="2"
+            android:background="@color/colorPrimaryDark"
+            android:layout_marginLeft="150dp"
+            android:textSize="10sp"/>
 
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/my_profile_name_layout">
+        android:layout_below="@+id/edit_header">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/btn_save_my_profile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Save and Exit"
-                android:background="@color/colorPrimary"
-                android:textColor="@color/white"
-                android:layout_margin="5dp"
-                android:textSize="10sp"/>
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:id="@+id/my_profile_name_layout">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:padding="10dp"
+                    android:background="@color/colorPrimaryDark">
+
+                    <ImageButton
+                        android:id="@+id/ib_edit_my_profile_pic"
+                        android:scaleType="centerCrop"
+                        android:adjustViewBounds="true"
+                        android:background="@color/white"
+                        android:layout_width="250dp"
+                        android:layout_height="250dp"
+                        android:maxWidth="250dp"
+                        android:maxHeight="250dp"
+                        android:minHeight="200dp"
+                        android:minWidth="200dp"
+                        android:src="@mipmap/ic_profile_icon" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/etxt_edit_my_name_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
+                android:textColorHint="@color/white"
+                android:layout_margin="5dp"
+                android:padding="5dp">
+
+                <EditText
+                    android:id="@+id/etxt_edit_my_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:cursorVisible="false"
+                    android:maxLines="1"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:hint="Name:"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
+                android:textColorHint="@color/white"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/etxt_edit_my_degree"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:maxLines="1"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:hint="My Degree:"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
+                android:textColorHint="@color/white"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                android:layout_weight="2.5">
+
+                <EditText
+                    android:id="@+id/etxt_edit_my_cost"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:maxLines="1"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:hint="I Charge: £"
+                    android:inputType="numberDecimal"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
                 android:orientation="horizontal"
                 android:layout_margin="5dp">
 
-                <TextView
-                    android:id="@+id/tv_edit_my_skills"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp"
-                    android:layout_weight="2"
-                    android:text="My Skills:"
-                    android:textColor="@color/white"
-                    android:background="@color/colorPrimaryDark"
-                    android:textSize="12sp"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="3">
 
-                <Button
-                    android:id="@+id/btn_begin_update_skills"
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textSize="13.5sp"
+                        android:textColor="@color/white"
+                        android:text="My Skills:"/>
+
+                    <TextView
+                        android:id="@+id/tv_edit_my_skills"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/ib_begin_update_skills"
+                    android:src="@mipmap/ic_skills_icon"
+                    android:background="@color/colorPrimaryDark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
+                    android:layout_gravity="top|end"
+                    android:scaleX="0.5"
+                    android:scaleY="0.5"
                     android:layout_weight="1"
-                    android:background="@color/colorPrimary"
-                    android:textColor="@color/white"
-                    android:text="UPDATE SKILLS"/>
+                    android:layout_margin="5dp"/>
             </LinearLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/colorPrimaryDark"
+                android:minHeight="250dp"
+                android:gravity="top"
                 android:layout_margin="5dp"
-                android:layout_marginBottom="50dp"
+                android:padding="5dp"
                 android:textColorHint="@color/white"
-                android:background="@color/colorPrimaryDark">
+                android:layout_marginBottom="50dp">
 
                 <EditText
                     android:id="@+id/etxt_edit_my_bio"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:gravity="top"
+                    android:minHeight="245dp"
                     android:hint="Edit My Bio"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"/>
+                    android:textSize="14sp"
+                    android:textColor="@color/white"/>
             </android.support.design.widget.TextInputLayout>
-
         </LinearLayout>
     </ScrollView>
 
@@ -162,7 +214,6 @@
         android:padding="50dp"
         android:visibility="gone"
         android:background="#7F000000">
-
     </FrameLayout>
 
 </RelativeLayout>

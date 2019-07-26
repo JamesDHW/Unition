@@ -21,7 +21,7 @@ public class Row_Item_Search {
 
     public void setSearch_user_id(String search_user_id){this.search_user_id = search_user_id;}
 
-    public int getSearch_user_cost(){return search_user_cost;}
+    public int getSearch_user_cost(){return search_user_cost/100;}
 
     public void setSearch_user_cost(int search_user_cost){this.search_user_cost = search_user_cost;}
 

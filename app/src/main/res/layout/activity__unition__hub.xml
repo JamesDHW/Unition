@@ -6,31 +6,113 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity_Unition_Hub"
-    android:background="@color/colorBackground">
+    tools:context=".Activity_Unition_Hub">
+
+    <LinearLayout
+        android:id="@+id/hub_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:layout_gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="left"
+            android:layout_weight="16">
+
+            <ImageButton
+                android:background="@color/white"
+                android:id="@+id/btn_home1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleY="0.75"
+                android:scaleX="0.75"
+                android:src="@mipmap/ic_launcher"/>
+
+            <Button
+                android:background="@color/white"
+                android:id="@+id/btn_home2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                style="?android:attr/borderlessButtonStyle"
+                android:text="UNITION"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:gravity="center_vertical|end">
+
+            <ImageButton
+                android:id="@+id/ib_profile"
+                android:src="@mipmap/ic_profile_icon"
+                android:background="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleX="0.6"
+                android:scaleY="0.6"/>
+
+            <ImageButton
+                android:id="@+id/ib_settings"
+                android:scaleX="0.6"
+                android:scaleY="0.6"
+                android:layout_width="wrap_content"
+                android:background="@color/white"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_settings_icon"/>
+
+            <ImageButton
+                android:id="@+id/ib_help"
+                android:scaleX="0.6"
+                android:scaleY="0.6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:src="@mipmap/ic_help_icon"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/header_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/hub_header"
+        android:background="@android:color/darker_gray"/>
 
     <FrameLayout
         android:id="@+id/fragment_container_hub"
+        android:layout_below="@+id/header_line"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <FrameLayout
+        android:id="@+id/frame_layout_help"
+        android:layout_below="@+id/hub_header"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="56dp">
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        android:translationZ="15dp"
+        android:background="@color/white"/>
 
-    </FrameLayout>
-
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
-        app:itemBackground="@color/colorPrimary"
-        android:backgroundTint="@color/colorBackground"
-        app:itemTextColor="@color/white"
-        android:showAsAction="always|withText"
+    <FrameLayout
+        android:id="@+id/frame_layout_settings"
+        android:layout_below="@+id/hub_header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="0dp"
-        android:layout_marginStart="0dp"
-        android:background="?android:attr/windowBackground"
-        android:theme="@style/BottomNavigationTheme"
-        app:menu="@menu/navigation"
-        app:labelVisibilityMode="labeled" />
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        android:translationZ="10dp" />
+
 
 </RelativeLayout>

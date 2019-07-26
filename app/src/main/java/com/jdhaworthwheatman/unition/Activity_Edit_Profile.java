@@ -1,31 +1,47 @@
 package com.jdhaworthwheatman.unition;
 
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,13 +49,81 @@ import java.util.Map;
 public class Activity_Edit_Profile extends AppCompatActivity {
 
     FirebaseAuth mAuth;
+    boolean drawn = false;
+
+    Uri targetUri;
+    Bitmap bitmap = null;
+
+    StorageReference mStorageRef;
+    DatabaseReference mDatabaseRef;
+    StorageTask mUploadTask;
+    Uri mImageUri;
+
+
+    private String saveToInternalStorage(Bitmap bitmapImage){
+        ContextWrapper cw = new ContextWrapper(getApplicationContext());
+        // path to /data/data/yourapp/app_data/imageDir
+        File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+        // Create imageDir
+        File mypath = new File(directory,"profile.jpg");
+
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(mypath);
+            // Use the compress method on the BitMap object to write image to the OutputStream
+            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException e) {e.printStackTrace();}
+        }
+        return directory.getAbsolutePath();
+    }
+
+    private Uri loadImageFromStorage(String path) {
+        try {
+            File f=new File(path, "profile.jpg");
+            Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
+            ImageButton upload_prof_pic = findViewById(R.id.ib_edit_my_profile_pic);
+            upload_prof_pic.setImageBitmap(b);
+            Uri myUri = Uri.fromFile(f);
+            return myUri;
+        }
+        catch (FileNotFoundException e){e.printStackTrace();}
+        return null;
+    }
+
+    private void uploadFile() {
+        if (mImageUri != null) {
+            StorageReference fileReference = mStorageRef;
+
+            mUploadTask = fileReference.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Toast.makeText(Activity_Edit_Profile.this, "Profile Picture Uploaded", Toast.LENGTH_SHORT).show();
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(Activity_Edit_Profile.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__edit__profile);
+        //hide keyboard
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        Button btn_save_profile = (Button) findViewById(R.id.btn_save_my_profile);
+        ImageButton btn_save_profile = findViewById(R.id.ib_save_my_profile);
 
         //find edit texts
         final EditText etxt_name = findViewById(R.id.etxt_edit_my_name);
@@ -47,6 +131,7 @@ public class Activity_Edit_Profile extends AppCompatActivity {
         final TextView txt_skills = findViewById(R.id.tv_edit_my_skills);
         final EditText etxt_bio = findViewById(R.id.etxt_edit_my_bio);
         final EditText etxt_cost = findViewById(R.id.etxt_edit_my_cost);
+
 
         //find the two frames for registering and logging in
         final FrameLayout fl_skills = findViewById(R.id.frame_layout_skills_chooser);
@@ -57,6 +142,7 @@ public class Activity_Edit_Profile extends AppCompatActivity {
         ft.commit();
         //set initial visibility of views
         fl_skills.setVisibility(View.GONE);
+
 
         //initialise shared preferences
         final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -69,21 +155,25 @@ public class Activity_Edit_Profile extends AppCompatActivity {
         String bio_val = sharedPreferences.getString("user_bio", "-");
         final long cost_val = sharedPreferences.getLong("user_cost", 0);
         final int skills_size_val = sharedPreferences.getInt("user_skills_size", 0);
+        final String User_ID = sharedPreferences.getString("ID","No Name");
 
-        String skills_string = "My Skills: ";
+        String skills_string = "" ;
         for(int i=0;i<skills_size_val;i++ ){
-            skills_string += sharedPreferences.getString("skill_val_"+i,null)+", ";
+            skills_string +=  " - " + sharedPreferences.getString("skill_val_"+i,null) +
+                    System.getProperty("line.separator");
         }
-        skills_string = skills_string.substring(0,skills_string.length()-2);
 
         etxt_name.setText(name_val, TextView.BufferType.EDITABLE);
         etxt_degree.setText(degree_val, TextView.BufferType.EDITABLE);
         txt_skills.setText(skills_string);
         etxt_bio.setText(bio_val, TextView.BufferType.EDITABLE);
-        etxt_cost.setText(String.valueOf(cost_val), TextView.BufferType.EDITABLE);
+        etxt_cost.setText(String.valueOf(cost_val/100), TextView.BufferType.EDITABLE);
+
+        mStorageRef = FirebaseStorage.getInstance().getReference(User_ID);
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference(User_ID);
 
         //SKILLS CHECKBOXES
-        final Button btn_begin_update_skills = findViewById(R.id.btn_begin_update_skills);
+        final ImageButton btn_begin_update_skills = findViewById(R.id.ib_begin_update_skills);
         btn_begin_update_skills.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,11 +190,14 @@ public class Activity_Edit_Profile extends AppCompatActivity {
                 final String[] all_skills_list = getResources().getStringArray(R.array.skills_list);
                 //find the linear layout
                 final LinearLayout sv_skills = findViewById(R.id.ll_skills);
-                for(int i=0;i<all_skills_list.length;i++){
-                    CheckBox cb = new CheckBox(getBaseContext());
-                    cb.setText(all_skills_list[i].toString());
-                    cb.setTextColor(getResources().getColor(R.color.white));
-                    sv_skills.addView(cb);
+                if(!drawn){
+                    for(int i=0;i<all_skills_list.length;i++){
+                        CheckBox cb = new CheckBox(getBaseContext());
+                        cb.setText(all_skills_list[i]);
+                        cb.setTextColor(getResources().getColor(R.color.white));
+                        sv_skills.addView(cb);
+                    }
+                    drawn = true;
                 }
 
                 //button to update and exit the view
@@ -124,6 +217,7 @@ public class Activity_Edit_Profile extends AppCompatActivity {
                                 }
                             }
                         }
+
                         //save how many items are checked
                         editor.putInt("user_skills_size",checked_size).apply();
                         //remove the frame
@@ -132,9 +226,9 @@ public class Activity_Edit_Profile extends AppCompatActivity {
                         //Redraw the skills TV
                         String skills_string = "My Skills: ";
                         for(int i=0;i<sharedPreferences.getInt("user_skills_size", 0);i++ ){
-                            skills_string += sharedPreferences.getString("skill_val_"+i,null)+", ";
+                            skills_string += System.getProperty("line.separator") + " - " +
+                                    sharedPreferences.getString("skill_val_"+i,null);
                         }
-                        skills_string = skills_string.substring(0,skills_string.length()-2);
                         txt_skills.setText(skills_string);
 
                     }
@@ -148,7 +242,11 @@ public class Activity_Edit_Profile extends AppCompatActivity {
                 String name_val = etxt_name.getText().toString();
                 String degree_val = etxt_degree.getText().toString();
                 String bio_val = etxt_bio.getText().toString();
-                long cost_val = Long.valueOf(etxt_cost.getText().toString());
+                long cost_val = 100*Long.valueOf(etxt_cost.getText().toString());
+
+                if(bitmap!=null){
+                    saveToInternalStorage(bitmap);
+                }
 
                 //update shared preferences
                 editor.putString("user_name", name_val).
@@ -173,8 +271,11 @@ public class Activity_Edit_Profile extends AppCompatActivity {
                 for(int i=0;i<sharedPreferences.getInt("user_skills_size",0);i++){
                     skills_array_list.add(sharedPreferences.getString("skill_val_"+i,null));
                 }
+
+                //add my degree as a skill to search
+                skills_array_list.add(degree_val.toLowerCase().trim());
                 dataToSave.put("skill_list",skills_array_list);
-                mDocRef.set(dataToSave).addOnSuccessListener(new OnSuccessListener<Void>() {
+                mDocRef.update(dataToSave).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Intent intent = new Intent(getBaseContext(), Activity_Unition_Hub.class);
@@ -185,6 +286,40 @@ public class Activity_Edit_Profile extends AppCompatActivity {
                 });
             }
         });
+
+        ImageButton choose_prof_pic = findViewById(R.id.ib_edit_my_profile_pic);
+        mImageUri = loadImageFromStorage("/data/user/0/com.jdhaworthwheatman.unition/app_imageDir");
+        choose_prof_pic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, 0);
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO Auto-generated method stub
+        super.onActivityResult(requestCode, resultCode, data);
+        ImageButton upload_prof_pic = findViewById(R.id.ib_edit_my_profile_pic);
+
+        if (resultCode == RESULT_OK) {
+            targetUri = data.getData();
+            try {
+                bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));
+                upload_prof_pic.setImageBitmap(bitmap);
+                uploadFile();
+            } catch (FileNotFoundException e) {e.printStackTrace();}
+
+//            if (mUploadTask != null && mUploadTask.isInProgress()) {
+//                Toast.makeText(Activity_Edit_Profile.this, "Upload in progress", Toast.LENGTH_SHORT).show();
+//            } else {
+//                uploadFile();
+//            }
+        }
     }
 
     @Override
@@ -192,8 +327,11 @@ public class Activity_Edit_Profile extends AppCompatActivity {
         FrameLayout fl_skills = findViewById(R.id.frame_layout_skills_chooser);
         if(fl_skills.getVisibility()==View.VISIBLE){
             fl_skills.setVisibility(View.GONE);
+
         } else{
+            Intent intent = new Intent(getBaseContext(), Activity_Unition_Hub.class);
             finish();
+            startActivity(intent);
         }
     }
 }

@@ -3,18 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="@color/Laura5">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingBottom="40dp">
 
         <LinearLayout
             android:id="@+id/ll_skills"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginBottom="55dp"/>
+            android:orientation="vertical"/>
 
     </ScrollView>
 
@@ -22,6 +22,8 @@
         android:id="@+id/btn_update_skills"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:textColor="@color/white"
         android:layout_alignParentBottom="true"
         android:text="Update Skills" />
 

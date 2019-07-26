@@ -46,8 +46,8 @@ public class Adapter_Custom_Search extends BaseAdapter {
             convertView = mInflater.inflate(R.layout.list_item_search,null);
             holder = new SearchViewHolder();
 
-            holder.tv_search_user_name = (TextView) convertView.findViewById(R.id.tv_search_name);
-            holder.tv_search_user_cost = (TextView) convertView.findViewById(R.id.tv_search_cost);
+            holder.tv_search_user_name = convertView.findViewById(R.id.tv_search_name);
+            holder.tv_search_user_cost = convertView.findViewById(R.id.tv_search_cost);
 
             Row_Item_Search search_row_pos = search_row_items.get(position);
 
