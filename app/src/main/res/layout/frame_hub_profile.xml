@@ -228,6 +228,7 @@
             <com.jdhaworthwheatman.unition.ExpandableHeightGridView
                 android:id="@+id/gv_my_skills"
                 android:layout_width="match_parent"
+                android:layout_margin="3dp"
                 android:layout_height="150dp"
                 android:background="@color/Laura1"
                 android:numColumns="3"

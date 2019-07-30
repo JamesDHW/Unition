@@ -24,6 +24,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,7 +41,6 @@ public class Frag_Hub_Home extends Fragment implements AdapterView.OnItemClickLi
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.frame_hub_home, container, false);
         mAuth = FirebaseAuth.getInstance();
-        final String[] all_skills_list = getResources().getStringArray(R.array.skills_list);
 
         //shared prefs
         final SharedPreferences sharedPreferences = PreferenceManager.
@@ -95,13 +95,26 @@ public class Frag_Hub_Home extends Fragment implements AdapterView.OnItemClickLi
         ArrayList<Integer> skill_icon_list = new ArrayList<Integer>();
         GridView Gv = myView.findViewById(R.id.gv_search_skills);
 
+        final String[] all_skills_list = getResources().getStringArray(R.array.skills_list);
+        final String[] list_coding = getResources().getStringArray(R.array.skills_coding);
+        final String[] list_design = getResources().getStringArray(R.array.skills_design);
+        final String[] list_music = getResources().getStringArray(R.array.skills_music);
+        final String[] list_language = getResources().getStringArray(R.array.skills_language);
+        final String[] list_cooking = getResources().getStringArray(R.array.skills_cooking);
+
+
         for (int i = 0; i < all_skills_list.length; i++) {
-//            skill_icon_list.add(getResources().getIdentifier("icon"+all_skills_list[i].toLowerCase(),"mipmap","com.jdhaworthwheatman.unition"));
-//            if(skill_icon_list.get(skill_icon_list.size()-1)==null && !skill_icon_list.isEmpty()){
-//                skill_icon_list.remove(skill_icon_list.size()-1);
-//                skill_icon_list.add(R.mipmap.iconskills);
-//            }
-            skill_icon_list.add(R.mipmap.iconskills);
+            if(Arrays.asList(list_coding).contains(all_skills_list[i])){
+                skill_icon_list.add(R.mipmap.ic_coding);
+            } else if(Arrays.asList(list_design).contains(all_skills_list[i])){
+                skill_icon_list.add(R.mipmap.ic_design);
+            } else if(Arrays.asList(list_language).contains(all_skills_list[i])){
+                skill_icon_list.add(R.mipmap.ic_language);
+            } else if(Arrays.asList(list_music).contains(all_skills_list[i])){
+                skill_icon_list.add(R.mipmap.ic_music);
+            } else if(Arrays.asList(list_cooking).contains(all_skills_list[i])){
+                skill_icon_list.add(R.mipmap.ic_cooking);
+            }
         }
 
         for (int i = 0; i < all_skills_list.length; i++) {

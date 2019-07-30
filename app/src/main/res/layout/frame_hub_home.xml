@@ -121,6 +121,7 @@
         android:verticalSpacing="1dp"
         android:horizontalSpacing="1dp"
         android:stretchMode="columnWidth"
+        android:layout_margin="3dp"
         android:gravity="center"/>
 
 </LinearLayout>

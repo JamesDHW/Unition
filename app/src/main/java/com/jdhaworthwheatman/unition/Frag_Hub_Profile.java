@@ -30,6 +30,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Frag_Hub_Profile extends Fragment {
@@ -121,7 +122,6 @@ public class Frag_Hub_Profile extends Fragment {
         RatingBar ratingBar = myView.findViewById(R.id.my_rating_bar);
         ratingBar.setRating(rating_val);
 
-
         //put shared preferences values in to views
         tv_my_name.setText(name_val);
         tv_my_degree.setText(degree_val);
@@ -136,8 +136,24 @@ public class Frag_Hub_Profile extends Fragment {
             my_skill_list.add(sharedPreferences.getString("skill_val_"+i,null));
         }
 
+        final String[] list_coding = getResources().getStringArray(R.array.skills_coding);
+        final String[] list_design = getResources().getStringArray(R.array.skills_design);
+        final String[] list_music = getResources().getStringArray(R.array.skills_music);
+        final String[] list_language = getResources().getStringArray(R.array.skills_language);
+        final String[] list_cooking = getResources().getStringArray(R.array.skills_cooking);
+
         for(int i=0; i<my_skill_list.size();i++){
-            skill_icon_list.add(R.mipmap.iconskills);
+            if(Arrays.asList(list_coding).contains(my_skill_list.get(i))){
+                skill_icon_list.add(R.mipmap.ic_coding);
+            } else if(Arrays.asList(list_design).contains(my_skill_list.get(i))){
+                skill_icon_list.add(R.mipmap.ic_design);
+            } else if(Arrays.asList(list_language).contains(my_skill_list.get(i))){
+                skill_icon_list.add(R.mipmap.ic_language);
+            } else if(Arrays.asList(list_music).contains(my_skill_list.get(i))){
+                skill_icon_list.add(R.mipmap.ic_music);
+            } else if(Arrays.asList(list_cooking).contains(my_skill_list.get(i))){
+                skill_icon_list.add(R.mipmap.ic_cooking);
+            }
         }
 
         ExpandableHeightGridView Gv = myView.findViewById(R.id.gv_my_skills);

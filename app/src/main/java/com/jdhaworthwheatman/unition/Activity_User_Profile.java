@@ -41,6 +41,7 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -185,8 +186,24 @@ public class Activity_User_Profile extends AppCompatActivity {
                     Gv.setExpanded(true);
                     rowItems = new ArrayList<Row_Item_Skills>();
 
+                    final String[] list_coding = getResources().getStringArray(R.array.skills_coding);
+                    final String[] list_design = getResources().getStringArray(R.array.skills_design);
+                    final String[] list_music = getResources().getStringArray(R.array.skills_music);
+                    final String[] list_language = getResources().getStringArray(R.array.skills_language);
+                    final String[] list_cooking = getResources().getStringArray(R.array.skills_cooking);
+
                     for(int i=0; i<skills_array_list.size();i++){
-                        skill_icon_list.add(R.mipmap.iconskills);
+                        if(Arrays.asList(list_coding).contains(skills_array_list.get(i))){
+                            skill_icon_list.add(R.mipmap.ic_coding);
+                        } else if(Arrays.asList(list_design).contains(skills_array_list.get(i))){
+                            skill_icon_list.add(R.mipmap.ic_design);
+                        } else if(Arrays.asList(list_language).contains(skills_array_list.get(i))){
+                            skill_icon_list.add(R.mipmap.ic_language);
+                        } else if(Arrays.asList(list_music).contains(skills_array_list.get(i))){
+                            skill_icon_list.add(R.mipmap.ic_music);
+                        } else if(Arrays.asList(list_cooking).contains(skills_array_list.get(i))){
+                            skill_icon_list.add(R.mipmap.ic_cooking);
+                        }
                     }
 
                     for (int i = 0; i < skills_array_list.size(); i++) {

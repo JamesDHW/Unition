@@ -44,6 +44,7 @@
         <item>C++</item>
         <item>Cooking</item>
         <item>CSS</item>
+        <item>Drumming</item>
         <item>French</item>
         <item>Game Design</item>
         <item>German</item>
@@ -62,13 +63,53 @@
         <item>Video Editing</item>
         <item>Web Design</item>
         <item>WordPress</item>
-
     </string-array>
+
+    <string-array name="skills_coding">
+        <item>Android</item>
+        <item>C</item>
+        <item>C#</item>
+        <item>C++</item>
+        <item>CSS</item>
+        <item>GitHub</item>
+        <item>HTML</item>
+        <item>IOS</item>
+        <item>Java</item>
+        <item>Javascript</item>
+        <item>PHP</item>
+        <item>Python</item>
+        <item>WordPress</item>
+    </string-array>
+
+    <string-array name="skills_design">
+        <item>Animation</item>
+        <item>Game Design</item>
+        <item>PhotoShop</item>
+        <item>Python</item>
+        <item>Video Editing</item>
+        <item>Web Design</item>
+    </string-array>
+
+    <string-array name="skills_language">
+        <item>French</item>
+        <item>German</item>
+        <item>Italian</item>
+        <item>Spanish</item>
+    </string-array>
+
+    <string-array name="skills_music">
+        <item>Audio Editing</item>
+        <item>Drumming</item>
+        <item>Guitar</item>
+        <item>Piano</item>
+    </string-array>
+
+    <string-array name="skills_cooking">
+        <item>Cooking</item>
+    </string-array>
+
     <string name="title_activity_tuition__hub">Tuition_Hub</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_teaching__hub">Teaching_Hub</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">Tab 3</string>
 </resources>
