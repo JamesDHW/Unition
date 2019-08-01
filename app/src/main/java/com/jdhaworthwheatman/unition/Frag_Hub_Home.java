@@ -52,20 +52,24 @@ public class Frag_Hub_Home extends Fragment implements AdapterView.OnItemClickLi
         final DocumentReference suggestioinRef = db.collection("Unition").
                 document("Skill Suggestions");
 
+        final LinearLayout ll_suggestion = myView.findViewById(R.id.ll_suggestion);
+        final LinearLayout ll_learn_smth_new = myView.findViewById(R.id.ll_learn_smth_new);
+
 
         ImageButton ib_suggestion = myView.findViewById(R.id.ib_suggestion);
         ib_suggestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                final LinearLayout ll_suggestion = myView.findViewById(R.id.ll_suggestion);
                 ll_suggestion.setVisibility(View.VISIBLE);
+                ll_learn_smth_new.setVisibility(View.GONE);
 
                 ImageButton ib_close_suggestion = myView.findViewById(R.id.btn_close_suggestion);
                 ib_close_suggestion.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         ll_suggestion.setVisibility(View.GONE);
+                        ll_learn_smth_new.setVisibility(View.VISIBLE);
                     }
                 });
 
@@ -82,6 +86,7 @@ public class Frag_Hub_Home extends Fragment implements AdapterView.OnItemClickLi
                         suggestioinRef.update(dataToSave);
 
                         ll_suggestion.setVisibility(View.GONE);
+                        ll_learn_smth_new.setVisibility(View.VISIBLE);
                         Toast.makeText(getContext(),"Suggestion made (1 per user)",Toast.LENGTH_SHORT);
                         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
@@ -93,9 +98,11 @@ public class Frag_Hub_Home extends Fragment implements AdapterView.OnItemClickLi
         //Initialise list arrays
         rowItems = new ArrayList<Row_Item_Skills>();
         ArrayList<Integer> skill_icon_list = new ArrayList<Integer>();
-        GridView Gv = myView.findViewById(R.id.gv_search_skills);
+        ExpandableHeightGridView Gv = myView.findViewById(R.id.gv_search_skills);
 
-        final String[] all_skills_list = getResources().getStringArray(R.array.skills_list);
+        String [] strings = getResources().getStringArray(R.array.skills_list);
+        List<String> all_skills_list = new ArrayList<String>(Arrays.asList(strings));
+
         final String[] list_coding = getResources().getStringArray(R.array.skills_coding);
         final String[] list_design = getResources().getStringArray(R.array.skills_design);
         final String[] list_music = getResources().getStringArray(R.array.skills_music);
@@ -103,29 +110,30 @@ public class Frag_Hub_Home extends Fragment implements AdapterView.OnItemClickLi
         final String[] list_cooking = getResources().getStringArray(R.array.skills_cooking);
 
 
-        for (int i = 0; i < all_skills_list.length; i++) {
-            if(Arrays.asList(list_coding).contains(all_skills_list[i])){
+        for (int i = 0; i < all_skills_list.size(); i++) {
+            if(Arrays.asList(list_coding).contains(all_skills_list.get(i))){
                 skill_icon_list.add(R.mipmap.ic_coding);
-            } else if(Arrays.asList(list_design).contains(all_skills_list[i])){
+            } else if(Arrays.asList(list_design).contains(all_skills_list.get(i))){
                 skill_icon_list.add(R.mipmap.ic_design);
-            } else if(Arrays.asList(list_language).contains(all_skills_list[i])){
+            } else if(Arrays.asList(list_language).contains(all_skills_list.get(i))){
                 skill_icon_list.add(R.mipmap.ic_language);
-            } else if(Arrays.asList(list_music).contains(all_skills_list[i])){
+            } else if(Arrays.asList(list_music).contains(all_skills_list.get(i))){
                 skill_icon_list.add(R.mipmap.ic_music);
-            } else if(Arrays.asList(list_cooking).contains(all_skills_list[i])){
+            } else if(Arrays.asList(list_cooking).contains(all_skills_list.get(i))){
                 skill_icon_list.add(R.mipmap.ic_cooking);
             }
         }
 
-        for (int i = 0; i < all_skills_list.length; i++) {
-            Row_Item_Skills item = new Row_Item_Skills(all_skills_list[i],skill_icon_list.get(i));
+        for (int i = 0; i < all_skills_list.size(); i++) {
+            Row_Item_Skills item = new Row_Item_Skills(all_skills_list.get(i),skill_icon_list.get(i));
             rowItems.add(item);
         }
         Adapter_Custom_Skill adapter = new Adapter_Custom_Skill(getContext(), rowItems);
         Gv.setAdapter(adapter);
         Gv.setOnItemClickListener(this);
+        Gv.setExpanded(true);
 
-        Button btn_my_degree_search = myView.findViewById(R.id.btn_search_my_degree);
+        ImageButton btn_my_degree_search = myView.findViewById(R.id.btn_search_my_degree);
         btn_my_degree_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

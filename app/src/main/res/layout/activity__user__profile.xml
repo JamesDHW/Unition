@@ -274,8 +274,10 @@
             <TextView
                 android:id="@+id/tv_user_skills"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:padding="10dp"
+                android:textSize="14sp"
+                android:gravity="center"
                 android:background="@color/colorBackground"
                 android:visibility="gone"
                 tools:text="-" />
