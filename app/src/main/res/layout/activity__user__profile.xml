@@ -79,7 +79,7 @@
                 android:layout_height="match_parent"
                 android:paddingBottom="15dp"
                 android:background="@color/white"
-                android:gravity="center">
+                android:gravity="center_horizontal">
 
                 <LinearLayout
                     android:id="@+id/ll_message"
@@ -137,8 +137,8 @@
                     android:id="@+id/ll_de_link"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:visibility="gone"
+                    android:gravity="center"
                     android:layout_margin="10dp"
                     android:orientation="vertical">
 
@@ -160,26 +160,25 @@
 
                 <LinearLayout
                     android:id="@+id/ll_to_teach"
-                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <ImageButton
                         android:src="@mipmap/ic_lesson_icon"
                         android:id="@+id/btn_to_teach"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:visibility="gone"
-                        android:layout_margin="30dp"
-                        android:paddingRight="30dp"
-                        android:paddingLeft="30dp"
                         android:background="@color/white"/>
 
                     <TextView
+                        android:gravity="center"
                         android:id="@+id/tv_to_teach"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:textSize="11sp"/>
@@ -285,8 +284,7 @@
             <com.jdhaworthwheatman.unition.ExpandableHeightGridView
                 android:id="@+id/gv_user_skills"
                 android:layout_width="match_parent"
-                android:layout_margin="3dp"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:background="@color/Laura1"
                 android:numColumns="3"
                 android:verticalSpacing="1dp"

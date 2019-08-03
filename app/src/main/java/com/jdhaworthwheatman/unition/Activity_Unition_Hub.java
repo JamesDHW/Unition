@@ -278,17 +278,6 @@ public class Activity_Unition_Hub extends AppCompatActivity {
 
                 loadFagment(new Frag_Hub_Profile());
                 editor.putInt("page_index",1).commit();
-
-//                fl_new_message.setVisibility(View.VISIBLE);
-//                fl_settings.setVisibility(View.GONE);
-//
-//                ImageButton ib_close_new_message = findViewById(R.id.btn_close_new_message);
-//                ib_close_new_message.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        fl_new_message.setVisibility(View.GONE);
-//                    }
-//                });
             }
         });
 
@@ -314,6 +303,7 @@ public class Activity_Unition_Hub extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
         int page_index = sharedPreferences.getInt("page_index",0);
         FrameLayout fl_settings = findViewById(R.id.frame_layout_settings);
         FrameLayout fl_help = findViewById(R.id.frame_layout_help);
@@ -321,15 +311,14 @@ public class Activity_Unition_Hub extends AppCompatActivity {
 
         if(page_index==1){
             loadFagment(new Frag_Hub_Home());
+            editor.putInt("page_index",0);
         } else if(fl_settings.getVisibility()==View.VISIBLE){
             fl_settings.setVisibility(View.GONE);
         } else if(fl_help.getVisibility()==View.VISIBLE){
             fl_help.setVisibility(View.GONE);
         } else if (fl_help.getVisibility()==View.GONE &&
                 fl_settings.getVisibility()==View.GONE &&
-                page_index==0){
-            finish();
-        }
+                page_index==0){ finish(); }
         try{
             if (ll_suggestion.getVisibility()==View.VISIBLE){
                 ll_suggestion.setVisibility(View.GONE);

@@ -7,6 +7,36 @@
     android:gravity="center_horizontal"
     android:background="@color/Laura1">
 
+    <LinearLayout
+        android:id="@+id/ll_learn_smth_new"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:background="@color/colorPrimaryDark"
+        android:layout_margin="3dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_weight="0.5"
+            android:textSize="16sp"
+            android:padding="15dp"
+            android:text="Learn Something New"/>
+
+        <ImageButton
+            android:id="@+id/ib_suggestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:scaleX="0.75"
+            android:scaleY="0.75"
+            android:background="@color/colorPrimaryDark"
+            android:src="@mipmap/ic_skills_icon"/>
+
+    </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -15,36 +45,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/ll_learn_smth_new"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:background="@color/colorPrimaryDark"
-                android:layout_margin="3dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:layout_weight="0.5"
-                    android:textSize="16sp"
-                    android:padding="15dp"
-                    android:text="Learn Something New"/>
-
-                <ImageButton
-                    android:id="@+id/ib_suggestion"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:scaleX="0.75"
-                    android:scaleY="0.75"
-                    android:background="@color/colorPrimaryDark"
-                    android:src="@mipmap/ic_skills_icon"/>
-
-            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_suggestion"

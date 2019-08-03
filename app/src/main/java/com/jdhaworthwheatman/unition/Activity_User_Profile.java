@@ -286,7 +286,6 @@ public class Activity_User_Profile extends AppCompatActivity {
                         ll_de_link.setVisibility(View.VISIBLE);
                         ll_link_up.setVisibility(View.GONE);
                         ll_to_teach.setVisibility(View.VISIBLE);
-                        tv_to_teach.setVisibility(View.VISIBLE);
                         tv_to_teach.setText("Begin Lesson"  + System.getProperty("line.separator") + "with "+users_name_val);
                     }
                 }
