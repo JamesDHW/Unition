@@ -1,6 +1,9 @@
 package com.jdhaworthwheatman.unition;
 
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -120,7 +123,6 @@ public class Activity_Unition_Hub extends AppCompatActivity {
                 collection("Users").document(ID).collection("Links");
         CollectionReference collection_my_messages = db.collection("Unition").
                 document(uni_val).collection("Messages");
-
 
         //Find my CONFIRMED Links from FireBase and put them in Shared Prefs
         collection_my_links.whereEqualTo("confirmed",true).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -297,6 +299,14 @@ public class Activity_Unition_Hub extends AppCompatActivity {
                 });
             }
         });
+
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+
+        LinearLayout ll_no_network = findViewById(R.id.ll_no_network);
+        if(activeNetworkInfo==null){
+            ll_no_network.setVisibility(View.VISIBLE);
+        }
 
     }
 

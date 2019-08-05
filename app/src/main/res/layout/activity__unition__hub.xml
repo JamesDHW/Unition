@@ -114,5 +114,25 @@
         android:visibility="gone"
         android:translationZ="10dp" />
 
+    <LinearLayout
+        android:id="@+id/ll_no_network"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/btn_red"
+        android:translationZ="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="3dp"
+            android:text="No Network Available"
+            android:textSize="10sp"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
 
 </RelativeLayout>
