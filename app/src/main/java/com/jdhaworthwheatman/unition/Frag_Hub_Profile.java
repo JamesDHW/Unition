@@ -40,10 +40,9 @@ public class Frag_Hub_Profile extends Fragment {
     List<Row_Item_Skills> rowItems;
     long cost_val;
 
-
     private void loadImageFromStorage(String path) {
         try {
-            File f=new File(path, "profile.jpg");
+            File f=new File(path, "my_profile.jpg");
             Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
             ImageView iv_prof_pic = myView.findViewById(R.id.iv_profile_pic);
             iv_prof_pic.setImageBitmap(b);

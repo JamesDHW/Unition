@@ -1,5 +1,6 @@
 package com.jdhaworthwheatman.unition;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
@@ -33,6 +34,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
@@ -45,6 +47,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class Activity_Edit_Profile extends AppCompatActivity {
 
@@ -54,9 +57,10 @@ public class Activity_Edit_Profile extends AppCompatActivity {
     Uri targetUri;
     Bitmap bitmap = null;
 
+    FirebaseStorage storage;
+    StorageReference storageReference;
+
     StorageReference mStorageRef;
-    DatabaseReference mDatabaseRef;
-    StorageTask mUploadTask;
     Uri mImageUri;
 
 
@@ -65,7 +69,7 @@ public class Activity_Edit_Profile extends AppCompatActivity {
         // path to /data/data/yourapp/app_data/imageDir
         File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
         // Create imageDir
-        File mypath = new File(directory,"profile.jpg");
+        File mypath = new File(directory,"my_profile.jpg");
 
         FileOutputStream fos = null;
         try {
@@ -84,7 +88,7 @@ public class Activity_Edit_Profile extends AppCompatActivity {
 
     private Uri loadImageFromStorage(String path) {
         try {
-            File f=new File(path, "profile.jpg");
+            File f=new File(path, "my_profile.jpg");
             Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
             ImageButton upload_prof_pic = findViewById(R.id.ib_edit_my_profile_pic);
             upload_prof_pic.setImageBitmap(b);
@@ -95,24 +99,38 @@ public class Activity_Edit_Profile extends AppCompatActivity {
         return null;
     }
 
-    private void uploadFile() {
-        if (mImageUri != null) {
-            StorageReference fileReference = mStorageRef;
+    private void uploadImage() {
 
-            mUploadTask = fileReference.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(Activity_Edit_Profile.this, "Profile Picture Uploaded", Toast.LENGTH_SHORT).show();
+        if(targetUri != null)
+        {
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
 
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(Activity_Edit_Profile.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-        } else {
-            Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
+            StorageReference ref = storageReference.child("profile_pic");
+            ref.putFile(targetUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            progressDialog.dismiss();
+                            Toast.makeText(getBaseContext(), "Uploaded", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressDialog.dismiss();
+                            Toast.makeText(getBaseContext(), "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                                    .getTotalByteCount());
+                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                        }
+                    });
         }
     }
 
@@ -131,7 +149,6 @@ public class Activity_Edit_Profile extends AppCompatActivity {
         final TextView txt_skills = findViewById(R.id.tv_edit_my_skills);
         final EditText etxt_bio = findViewById(R.id.etxt_edit_my_bio);
         final EditText etxt_cost = findViewById(R.id.etxt_edit_my_cost);
-
 
         //find the two frames for registering and logging in
         final FrameLayout fl_skills = findViewById(R.id.frame_layout_skills_chooser);
@@ -170,7 +187,9 @@ public class Activity_Edit_Profile extends AppCompatActivity {
         etxt_cost.setText(String.valueOf(cost_val/100), TextView.BufferType.EDITABLE);
 
         mStorageRef = FirebaseStorage.getInstance().getReference(User_ID);
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference(User_ID);
+
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference(User_ID);
 
         //SKILLS CHECKBOXES
         final ImageButton btn_begin_update_skills = findViewById(R.id.ib_begin_update_skills);
@@ -297,7 +316,6 @@ public class Activity_Edit_Profile extends AppCompatActivity {
                 startActivityForResult(intent, 0);
             }
         });
-
     }
 
     @Override
@@ -311,14 +329,8 @@ public class Activity_Edit_Profile extends AppCompatActivity {
             try {
                 bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));
                 upload_prof_pic.setImageBitmap(bitmap);
-                uploadFile();
+                uploadImage();
             } catch (FileNotFoundException e) {e.printStackTrace();}
-
-//            if (mUploadTask != null && mUploadTask.isInProgress()) {
-//                Toast.makeText(Activity_Edit_Profile.this, "Upload in progress", Toast.LENGTH_SHORT).show();
-//            } else {
-//                uploadFile();
-//            }
         }
     }
 

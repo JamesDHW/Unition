@@ -39,6 +39,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -56,7 +57,7 @@ public class Activity_User_Profile extends AppCompatActivity {
     List<Long> rating_list;
 
     List<Row_Item_Skills> rowItems;
-    File localFile = null;
+    File localFile = new File("/data/user/0/com.jdhaworthwheatman.unition/app_imageDir", "rofile.jpg");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,7 @@ public class Activity_User_Profile extends AppCompatActivity {
         //get info out of intent from search activity
         Bundle extras = getIntent().getExtras();
         final String user_id_val = (String) extras.get("users_id");
-        mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://unition-7c4a8.appspot.com/"+user_id_val);
+        mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://unition-7c4a8.appspot.com/"+user_id_val+"/profile_pic");
 
         //initialise authentication variables
         mAuth = FirebaseAuth.getInstance();
@@ -114,49 +115,27 @@ public class Activity_User_Profile extends AppCompatActivity {
 
         final ImageView iv_profile = findViewById(R.id.iv_profile_pic);
 
+        mStorageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                try {
+                    Bitmap b = BitmapFactory.decodeStream(new FileInputStream(localFile));
+                    iv_profile.setImageBitmap(b);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                fl_loading.setVisibility(View.GONE);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                fl_loading.setVisibility(View.GONE);
+            }
+        });
+
         users_document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-
-                mStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        try {
-                            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                            iv_profile.setImageBitmap(bitmap);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        fl_loading.setVisibility(View.GONE);
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getBaseContext(),"no profile picture found",Toast.LENGTH_SHORT).show();
-                        fl_loading.setVisibility(View.GONE);
-                    }
-                });
-
-//                try {
-//                    localFile = File.createTempFile("user_profile", "jpg");
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                mStorageRef.getFile(localFile)
-//                        .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-//                            @Override
-//                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//                                iv_profile.setImageBitmap(BitmapFactory.decodeFile(localFile.getAbsolutePath()));
-//                                fl_loading.setVisibility(View.GONE);
-//
-//                            }
-//                        }).addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Toast.makeText(getBaseContext(),"no profile picture found",Toast.LENGTH_SHORT).show();
-//                        fl_loading.setVisibility(View.GONE);
-//                    }
-//                });
 
                 users_name_val = documentSnapshot.getString("name");
                 String users_degree_val = documentSnapshot.getString("degree");
