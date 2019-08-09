@@ -157,7 +157,6 @@ public class Activity_User_Profile extends AppCompatActivity {
                     ratingBar.setRating(0);
                 }
 
-
                 try{
                     ArrayList<Integer> skill_icon_list = new ArrayList<>();
                     List<String> skills_array_list = (List<String>) documentSnapshot.get("skill_list");
@@ -182,8 +181,12 @@ public class Activity_User_Profile extends AppCompatActivity {
                             skill_icon_list.add(R.mipmap.ic_music);
                         } else if(Arrays.asList(list_cooking).contains(skills_array_list.get(i))){
                             skill_icon_list.add(R.mipmap.ic_cooking);
+                        } else {
+                            skill_icon_list.add(R.mipmap.ic_course);
                         }
                     }
+
+
 
                     for (int i = 0; i < skills_array_list.size(); i++) {
                         Row_Item_Skills item = new Row_Item_Skills(skills_array_list.get(i),skill_icon_list.get(i));
