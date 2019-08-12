@@ -52,7 +52,7 @@ public class Adapter_Custom_Search extends BaseAdapter {
             Row_Item_Search search_row_pos = search_row_items.get(position);
 
             holder.tv_search_user_name.setText(search_row_pos.getSearch_user_name());
-            holder.tv_search_user_cost.setText(Integer.toString(search_row_pos.getSearch_user_cost()));
+            holder.tv_search_user_cost.setText("Charges £"+Integer.toString(search_row_pos.getSearch_user_cost()));
 
             convertView.setTag(holder);
         } else {

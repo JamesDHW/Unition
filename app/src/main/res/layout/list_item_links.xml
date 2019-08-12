@@ -1,39 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
     android:padding="2dp">
+
+    <ImageView
+        android:id="@+id/iv_profile_list"
+        android:src="@mipmap/ic_profile_icon"
+        android:background="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:scaleX="0.6"
+        android:scaleY="0.6"/>
 
     <TextView
         android:id="@+id/tv_links_user_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:paddingBottom="10dp"
+        android:layout_margin="5dp"
+        android:layout_weight="0.45"
         android:text="txt"
         android:textSize="20sp"/>
 
     <TextView
-        android:id="@+id/tv_links_user_costs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_toLeftOf="@+id/tv_links_user_cost"
-        android:paddingBottom="10dp"
-        android:paddingTop="15dp"
-        android:text="Costs:  £"
-        android:textSize="15sp"/>
-
-    <TextView
         android:id="@+id/tv_links_user_cost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="10dp"
-        android:layout_alignParentRight="true"
-        android:paddingBottom="10dp"
-        android:paddingTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"        
+        android:layout_margin="5dp"
+        android:layout_weight="1"
         android:textSize="15sp"/>
 
-</RelativeLayout>
+</LinearLayout>

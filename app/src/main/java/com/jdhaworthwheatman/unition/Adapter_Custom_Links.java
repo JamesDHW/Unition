@@ -50,7 +50,7 @@ public class Adapter_Custom_Links extends BaseAdapter {
             Row_Item_Links links_row_pos = links_row_items.get(position);
 
             holder.tv_links_user_name.setText(links_row_pos.getLinks_user_name());
-            holder.tv_links_user_cost.setText(Integer.toString(links_row_pos.getLinks_user_cost()));
+            holder.tv_links_user_cost.setText("Charges £"+Integer.toString(links_row_pos.getLinks_user_cost()));
 
             convertView.setTag(holder);
         } else {

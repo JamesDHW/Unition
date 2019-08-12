@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -47,7 +48,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Activity_User_Profile extends AppCompatActivity {
+public class Activity_User_Profile extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     FirebaseAuth mAuth;
     StorageReference mStorageRef;
@@ -161,7 +162,6 @@ public class Activity_User_Profile extends AppCompatActivity {
                     ArrayList<Integer> skill_icon_list = new ArrayList<>();
                     List<String> skills_array_list = (List<String>) documentSnapshot.get("skill_list");
                     ExpandableHeightGridView Gv = findViewById(R.id.gv_user_skills);
-                    Gv.setExpanded(true);
                     rowItems = new ArrayList<Row_Item_Skills>();
 
                     final String[] list_coding = getResources().getStringArray(R.array.skills_coding);
@@ -187,13 +187,14 @@ public class Activity_User_Profile extends AppCompatActivity {
                     }
 
 
-
                     for (int i = 0; i < skills_array_list.size(); i++) {
                         Row_Item_Skills item = new Row_Item_Skills(skills_array_list.get(i),skill_icon_list.get(i));
                         rowItems.add(item);
                     }
                     Adapter_Custom_Skill adapter = new Adapter_Custom_Skill(getBaseContext(), rowItems);
                     Gv.setAdapter(adapter);
+                    //Gv.setOnItemClickListener(new Activity_User_Profile());
+                    Gv.setExpanded(true);
                 } catch(Exception e){
                     final TextView tv_users_skills = findViewById(R.id.tv_user_skills);
                     tv_users_skills.setVisibility(View.VISIBLE);
@@ -352,5 +353,14 @@ public class Activity_User_Profile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        String skill_name = rowItems.get(position).getSkill_name();
+        Intent skill_intent = new Intent(getBaseContext(),Activity_Search.class);
+        skill_intent.putExtra("skill",skill_name);
+        startActivity(skill_intent);
+
     }
 }
