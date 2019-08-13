@@ -38,7 +38,7 @@ public class Activity_Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.Laura);
+        setTheme(R.style.AppTheme);
         setContentView(R.layout.activity__login);
 
         //initialise authentication variables

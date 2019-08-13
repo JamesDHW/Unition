@@ -27,7 +27,7 @@ import java.util.List;
 
 public class Activity_Search extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
-    List<Row_Item_Search> rowItems;
+    List<Row_Item_User_List> rowItems;
     FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
@@ -39,7 +39,7 @@ public class Activity_Search extends AppCompatActivity implements AdapterView.On
         final ListView mylistview = findViewById(R.id.lv_search);
 
         //Initialise list arrays
-        rowItems = new ArrayList<Row_Item_Search>();
+        rowItems = new ArrayList<Row_Item_User_List>();
 
         //initialise sharedPreferences
         final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -76,20 +76,20 @@ public class Activity_Search extends AppCompatActivity implements AdapterView.On
                             }
 
                             for (int i = 0; i < all_usernames.size(); i++) {
-                                Row_Item_Search item = new Row_Item_Search(all_usernames.get(i),all_user_ids.get(i), all_user_costs.get(i));
+                                Row_Item_User_List item = new Row_Item_User_List(all_usernames.get(i),all_user_ids.get(i), all_user_costs.get(i));
                                 rowItems.add(item);
                             }
-                            Adapter_Custom_Search adapter = new Adapter_Custom_Search(getBaseContext(), rowItems);
+                            Adapter_Custom_Users_List adapter = new Adapter_Custom_Users_List(getBaseContext(), rowItems);
                             mylistview.setAdapter(adapter);
                         }
                     }
         });
 
-        mylistview.setOnItemClickListener((AdapterView.OnItemClickListener) this);
+        mylistview.setOnItemClickListener(this);
     }
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String users_id = rowItems.get(position).getSearch_user_id();
+        String users_id = rowItems.get(position).getLinks_user_id();
         Intent users_intent = new Intent(Activity_Search.this,Activity_User_Profile.class);
         users_intent.putExtra("users_id",users_id);
         startActivity(users_intent);

@@ -5,21 +5,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:background="@color/Laura1">
+    android:background="@color/colorPrimaryDark">
 
     <LinearLayout
         android:id="@+id/ll_learn_smth_new"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         android:layout_margin="3dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/colorBackground"
             android:layout_weight="0.5"
             android:textSize="16sp"
             android:padding="15dp"
@@ -32,7 +32,7 @@
             android:layout_weight="4"
             android:scaleX="0.75"
             android:scaleY="0.75"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:src="@mipmap/ic_skills_icon"/>
 
     </LinearLayout>
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@color/Laura5">
+            android:background="@color/colorPrimary">
 
             <TextView
                 android:layout_width="match_parent"
@@ -69,21 +69,21 @@
                 android:layout_weight="4"
                 android:scaleX="0.75"
                 android:scaleY="0.75"
-                android:background="@color/Laura5"/>
+                android:background="@color/colorPrimary"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/colorBackground"
             android:orientation="horizontal">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:background="@color/white"
+                android:background="@color/colorBackground"
                 android:layout_weight="1">
 
                 <android.support.design.widget.TextInputEditText
@@ -98,7 +98,7 @@
                 android:src="@mipmap/ic_send_icon"
                 android:scaleX="0.75"
                 android:scaleY="0.75"
-                android:background="@color/white"
+                android:background="@color/colorBackground"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -119,14 +119,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@color/Laura5"
+                android:background="@color/colorPrimary"
                 android:layout_margin="3dp"
                 android:gravity="center">
 
                 <ImageButton
                     android:id="@+id/btn_search_my_degree"
                     android:src="@mipmap/ic_course"
-                    android:background="@color/Laura5"
+                    android:background="@color/colorPrimary"
                     android:scaleY="1.5"
                     android:scaleX="1.5"
                     android:layout_width="wrap_content"
@@ -137,7 +137,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorBackground"
                     android:textStyle="bold"
                     android:textSize="14sp"
                     android:text="Find Users on my Course"
@@ -150,7 +150,7 @@
                 android:layout_width="match_parent"
                 android:layout_margin="3dp"
                 android:layout_height="match_parent"
-                android:background="@color/Laura1"
+                android:background="@color/colorPrimaryDark"
                 android:numColumns="3"
                 android:verticalSpacing="1dp"
                 android:horizontalSpacing="1dp"

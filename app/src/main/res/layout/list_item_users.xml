@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/iv_profile_list"
         android:src="@mipmap/ic_profile_icon"
-        android:background="@color/white"
+        android:background="@color/colorBackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -18,7 +18,7 @@
         android:scaleY="0.6"/>
 
     <TextView
-        android:id="@+id/tv_links_user_name"
+        android:id="@+id/tv_users_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -27,7 +27,7 @@
         android:textSize="20sp"/>
 
     <TextView
-        android:id="@+id/tv_links_user_cost"
+        android:id="@+id/tv_users_cost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"        
         android:layout_margin="5dp"

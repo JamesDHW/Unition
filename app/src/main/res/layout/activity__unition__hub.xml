@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/white"
+        android:background="@color/colorBackground"
         android:layout_gravity="center_vertical">
 
         <LinearLayout
@@ -24,7 +24,7 @@
             android:layout_weight="16">
 
             <ImageButton
-                android:background="@color/white"
+                android:background="@color/colorBackground"
                 android:id="@+id/btn_home1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
                 android:src="@mipmap/ic_launcher"/>
 
             <Button
-                android:background="@color/white"
+                android:background="@color/colorBackground"
                 android:id="@+id/btn_home2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
             <ImageButton
                 android:id="@+id/ib_profile"
                 android:src="@mipmap/ic_profile_icon"
-                android:background="@color/white"
+                android:background="@color/colorBackground"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleX="0.6"
@@ -63,7 +63,7 @@
                 android:scaleX="0.6"
                 android:scaleY="0.6"
                 android:layout_width="wrap_content"
-                android:background="@color/white"
+                android:background="@color/colorBackground"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_settings_icon"/>
 
@@ -73,7 +73,7 @@
                 android:scaleY="0.6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@color/colorBackground"
                 android:src="@mipmap/ic_help_icon"/>
 
         </LinearLayout>
@@ -101,14 +101,14 @@
         android:focusable="true"
         android:visibility="gone"
         android:translationZ="15dp"
-        android:background="@color/white"/>
+        android:background="@color/colorBackground"/>
 
     <FrameLayout
         android:id="@+id/frame_layout_settings"
         android:layout_below="@+id/hub_header"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/colorBackground"
         android:clickable="true"
         android:focusable="true"
         android:visibility="gone"
@@ -130,7 +130,7 @@
             android:padding="3dp"
             android:text="No Network Available"
             android:textSize="10sp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/colorBackground"/>
 
     </LinearLayout>
 

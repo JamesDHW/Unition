@@ -29,14 +29,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
@@ -47,7 +44,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 public class Activity_Edit_Profile extends AppCompatActivity {
 
@@ -213,7 +209,7 @@ public class Activity_Edit_Profile extends AppCompatActivity {
                     for(int i=0;i<all_skills_list.length;i++){
                         CheckBox cb = new CheckBox(getBaseContext());
                         cb.setText(all_skills_list[i]);
-                        cb.setTextColor(getResources().getColor(R.color.white));
+                        cb.setTextColor(getResources().getColor(R.color.colorBackground));
                         sv_skills.addView(cb);
                     }
                     drawn = true;

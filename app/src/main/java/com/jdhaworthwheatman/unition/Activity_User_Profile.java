@@ -1,5 +1,6 @@
 package com.jdhaworthwheatman.unition;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -56,6 +57,8 @@ public class Activity_User_Profile extends AppCompatActivity implements AdapterV
     String users_name_val;
     long users_cost_val;
     List<Long> rating_list;
+    ExpandableHeightGridView Gv;
+
 
     List<Row_Item_Skills> rowItems;
     File localFile = new File("/data/user/0/com.jdhaworthwheatman.unition/app_imageDir", "rofile.jpg");
@@ -114,6 +117,9 @@ public class Activity_User_Profile extends AppCompatActivity implements AdapterV
         final LinearLayout ll_to_teach = findViewById(R.id.ll_to_teach);
         final ImageButton btn_to_teach = findViewById(R.id.btn_to_teach);
 
+        Gv = findViewById(R.id.gv_user_skills);
+        Gv.setOnItemClickListener(this);
+
         final ImageView iv_profile = findViewById(R.id.iv_profile_pic);
 
         mStorageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
@@ -161,7 +167,6 @@ public class Activity_User_Profile extends AppCompatActivity implements AdapterV
                 try{
                     ArrayList<Integer> skill_icon_list = new ArrayList<>();
                     List<String> skills_array_list = (List<String>) documentSnapshot.get("skill_list");
-                    ExpandableHeightGridView Gv = findViewById(R.id.gv_user_skills);
                     rowItems = new ArrayList<Row_Item_Skills>();
 
                     final String[] list_coding = getResources().getStringArray(R.array.skills_coding);
@@ -193,7 +198,6 @@ public class Activity_User_Profile extends AppCompatActivity implements AdapterV
                     }
                     Adapter_Custom_Skill adapter = new Adapter_Custom_Skill(getBaseContext(), rowItems);
                     Gv.setAdapter(adapter);
-                    //Gv.setOnItemClickListener(new Activity_User_Profile());
                     Gv.setExpanded(true);
                 } catch(Exception e){
                     final TextView tv_users_skills = findViewById(R.id.tv_user_skills);

@@ -4,13 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/colorBackground">
 
     <LinearLayout
         android:id="@+id/edit_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:layout_marginLeft="150dp"
             android:textSize="10sp"/>
 
@@ -50,7 +50,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
+                android:background="@color/colorPrimaryDark"
                 android:gravity="center">
 
                 <LinearLayout
@@ -58,13 +58,13 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:padding="10dp"
-                    android:background="@color/colorPrimaryDark">
+                    android:background="@color/colorPrimary">
 
                     <ImageButton
                         android:id="@+id/ib_edit_my_profile_pic"
                         android:scaleType="centerCrop"
                         android:adjustViewBounds="true"
-                        android:background="@color/white"
+                        android:background="@color/colorBackground"
                         android:layout_width="250dp"
                         android:layout_height="250dp"
                         android:maxWidth="250dp"
@@ -80,8 +80,8 @@
                 android:id="@+id/etxt_edit_my_name_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
-                android:textColorHint="@color/white"
+                android:background="@color/colorPrimary"
+                android:textColorHint="@color/colorBackground"
                 android:layout_margin="5dp"
                 android:padding="5dp">
 
@@ -92,7 +92,7 @@
                     android:cursorVisible="false"
                     android:maxLines="1"
                     android:textSize="14sp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorBackground"
                     android:textStyle="bold"
                     android:hint="Name:"/>
 
@@ -101,8 +101,8 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
-                android:textColorHint="@color/white"
+                android:background="@color/colorPrimary"
+                android:textColorHint="@color/colorBackground"
                 android:layout_margin="5dp"
                 android:padding="5dp"
                 android:layout_weight="1">
@@ -113,7 +113,7 @@
                     android:layout_height="match_parent"
                     android:maxLines="1"
                     android:textSize="14sp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorBackground"
                     android:textStyle="bold"
                     android:hint="My Degree:"/>
             </android.support.design.widget.TextInputLayout>
@@ -121,8 +121,8 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
-                android:textColorHint="@color/white"
+                android:background="@color/colorPrimary"
+                android:textColorHint="@color/colorBackground"
                 android:layout_margin="5dp"
                 android:padding="5dp"
                 android:layout_weight="2.5">
@@ -133,7 +133,7 @@
                     android:layout_height="match_parent"
                     android:maxLines="1"
                     android:textSize="14sp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorBackground"
                     android:textStyle="bold"
                     android:hint="I Charge: £"
                     android:inputType="numberDecimal"/>
@@ -142,7 +142,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
+                android:background="@color/colorPrimary"
                 android:orientation="horizontal"
                 android:layout_margin="5dp">
 
@@ -157,7 +157,7 @@
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textSize="13.5sp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorBackground"
                         android:text="My Skills:"/>
 
                     <TextView
@@ -166,13 +166,13 @@
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textSize="14sp"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/colorBackground"/>
                 </LinearLayout>
 
                 <ImageButton
                     android:id="@+id/ib_begin_update_skills"
                     android:src="@mipmap/ic_skills_icon"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top|end"
@@ -185,12 +185,12 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimaryDark"
+                android:background="@color/colorPrimary"
                 android:minHeight="250dp"
                 android:gravity="top"
                 android:layout_margin="5dp"
                 android:padding="5dp"
-                android:textColorHint="@color/white"
+                android:textColorHint="@color/colorBackground"
                 android:layout_marginBottom="50dp">
 
                 <EditText
@@ -201,7 +201,7 @@
                     android:minHeight="245dp"
                     android:hint="Edit My Bio"
                     android:textSize="14sp"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/colorBackground"/>
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
     </ScrollView>

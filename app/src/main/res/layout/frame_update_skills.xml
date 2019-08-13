@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Laura5">
+    android:background="@color/colorPrimary">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,8 +22,8 @@
         android:id="@+id/btn_update_skills"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
-        android:textColor="@color/white"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/colorBackground"
         android:layout_alignParentBottom="true"
         android:text="Update Skills" />
 
