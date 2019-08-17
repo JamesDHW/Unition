@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorDark"
             android:gravity="center_horizontal">
 
             <LinearLayout
@@ -72,7 +72,7 @@
                 android:id="@+id/header_line"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/colorPrimaryDark"/>
+                android:background="@color/colorDark"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -285,7 +285,7 @@
                 android:id="@+id/gv_user_skills"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
+                android:background="@color/colorDark"
                 android:numColumns="3"
                 android:verticalSpacing="1dp"
                 android:horizontalSpacing="1dp"

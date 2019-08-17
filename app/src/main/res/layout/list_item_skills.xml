@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center"
-    android:background="@color/colorPrimaryDark">
+    android:background="@color/colorDark">
 
     <LinearLayout
         android:layout_width="match_parent"

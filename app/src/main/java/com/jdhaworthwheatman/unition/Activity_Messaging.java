@@ -83,7 +83,7 @@ public class Activity_Messaging extends AppCompatActivity {
                         params.setMargins(10,10,10,10);
 
                         tv_messeage.setTextColor(getResources().getColor(R.color.colorBackground));
-                        tv_messeage.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                        tv_messeage.setBackgroundColor(getResources().getColor(R.color.colorDark));
                         tv_messeage.setLayoutParams(new LinearLayout.
                                 LayoutParams(LinearLayout.
                                 LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));

@@ -2,6 +2,8 @@ package com.jdhaworthwheatman.unition;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,6 +32,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,6 +103,7 @@ public class Activity_Unition_Hub extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     @Override
@@ -190,8 +197,7 @@ public class Activity_Unition_Hub extends AppCompatActivity {
                                     String link_id_val  = documentSnapshot.getId();
                                     editor.putString("Link_id_pending_"+ finalI, link_id_val).
                                             putString("Link_name_pending_"+ finalI, link_name_val).
-                                            putLong("Link_cost_pending_"+ finalI, documentSnapshot.getLong("cost")).
-                                            apply();
+                                            putLong("Link_cost_pending_"+ finalI, documentSnapshot.getLong("cost")).apply();
                                 }
                             }
                         });
@@ -244,7 +250,6 @@ public class Activity_Unition_Hub extends AppCompatActivity {
             public void onClick(View v) {
                 fl_settings.setVisibility(View.VISIBLE);
                 fl_help.setVisibility(View.GONE);
-
                 ImageButton ib_close_settings = findViewById(R.id.btn_close_settings);
                 ib_close_settings.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -262,6 +267,8 @@ public class Activity_Unition_Hub extends AppCompatActivity {
             public void onClick(View v) {
                 loadFagment(new Frag_Hub_Home());
                 editor.putInt("page_index",0).commit();
+                fl_settings.setVisibility(View.GONE);
+                fl_help.setVisibility(View.GONE);
             }
         });
         Button btn_home = findViewById(R.id.btn_home2);
@@ -270,6 +277,8 @@ public class Activity_Unition_Hub extends AppCompatActivity {
             public void onClick(View v) {
                 loadFagment(new Frag_Hub_Home());
                 editor.putInt("page_index",0).commit();
+                fl_settings.setVisibility(View.GONE);
+                fl_help.setVisibility(View.GONE);
             }
         });
 
@@ -277,9 +286,10 @@ public class Activity_Unition_Hub extends AppCompatActivity {
         btn_my_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 loadFagment(new Frag_Hub_Profile());
                 editor.putInt("page_index",1).commit();
+                fl_settings.setVisibility(View.GONE);
+                fl_help.setVisibility(View.GONE);
             }
         });
 
@@ -287,9 +297,7 @@ public class Activity_Unition_Hub extends AppCompatActivity {
         ib_help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 fl_help.setVisibility(View.VISIBLE);
-
                 ImageButton ib_close_help = findViewById(R.id.btn_close_help);
                 ib_close_help.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -307,7 +315,6 @@ public class Activity_Unition_Hub extends AppCompatActivity {
         if(activeNetworkInfo==null){
             ll_no_network.setVisibility(View.VISIBLE);
         }
-
     }
 
     @Override
@@ -319,9 +326,9 @@ public class Activity_Unition_Hub extends AppCompatActivity {
         FrameLayout fl_help = findViewById(R.id.frame_layout_help);
         LinearLayout ll_suggestion = findViewById(R.id.ll_suggestion);
 
-        if(page_index==1){
+        if(page_index!=0){
             loadFagment(new Frag_Hub_Home());
-            editor.putInt("page_index",0);
+            editor.putInt("page_index",0).commit();
         } else if(fl_settings.getVisibility()==View.VISIBLE){
             fl_settings.setVisibility(View.GONE);
         } else if(fl_help.getVisibility()==View.VISIBLE){

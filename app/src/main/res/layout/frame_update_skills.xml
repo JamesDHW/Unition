@@ -22,7 +22,7 @@
         android:id="@+id/btn_update_skills"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorDark"
         android:textColor="@color/colorBackground"
         android:layout_alignParentBottom="true"
         android:text="Update Skills" />

@@ -3,11 +3,11 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
         <!-- The background color, preferably the same as your normal theme -->
-        <item android:drawable="@color/colorPrimaryDark"/>
+        <item android:drawable="@color/colorBackground"/>
         <item
             android:drawable="@drawable/ic_launcher_round"
-            android:height="250dp"
-            android:width="250dp"
+            android:height="200dp"
+            android:width="200dp"
             android:gravity="center"/>
 
 </layer-list>

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:background="@color/colorPrimaryDark">
+    android:background="@color/colorDark">
 
     <LinearLayout
         android:id="@+id/ll_learn_smth_new"
@@ -150,7 +150,7 @@
                 android:layout_width="match_parent"
                 android:layout_margin="3dp"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimaryDark"
+                android:background="@color/colorDark"
                 android:numColumns="3"
                 android:verticalSpacing="1dp"
                 android:horizontalSpacing="1dp"
