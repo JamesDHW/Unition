@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorBackground">
+    android:background="@color/colorBackground"
+    android:orientation="vertical">
 
+    <LinearLayout
+        android:id="@+id/progressBar_user"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <ProgressBar
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:minHeight="40dp"
+            android:minWidth="40dp" />
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -310,18 +327,5 @@
                 android:background="@color/colorBackground"
                 tools:text="-" />
         </LinearLayout>
-
     </ScrollView>
-
-    <FrameLayout
-        android:id="@+id/frame_layout_loading_user"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:translationZ="15dp"
-        android:clickable="true"
-        android:focusable="true">
-
-    </FrameLayout>
-
-</RelativeLayout>
+</LinearLayout>

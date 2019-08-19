@@ -53,8 +53,8 @@
                 android:id="@+id/ib_profile"
                 android:src="@mipmap/ic_profile_icon"
                 android:background="@color/colorBackground"
-                android:layout_width="5dp"
-                android:layout_height="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:scaleX="0.6"
                 android:scaleY="0.6"/>
 

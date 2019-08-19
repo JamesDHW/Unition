@@ -68,15 +68,6 @@ public class Activity_User_Profile extends AppCompatActivity implements AdapterV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__user__profile);
 
-        //find the loading frame
-        final FrameLayout fl_loading = findViewById(R.id.frame_layout_loading_user);
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        //add fragment to frame
-        ft.add(R.id.frame_layout_loading_user, new Frag_Loading());
-        ft.commit();
-        //set initial visibility of views
-        fl_loading.setVisibility(View.VISIBLE);
-
         //get info out of intent from search activity
         Bundle extras = getIntent().getExtras();
         final String user_id_val = (String) extras.get("users_id");
@@ -116,6 +107,8 @@ public class Activity_User_Profile extends AppCompatActivity implements AdapterV
         final LinearLayout ll_message = findViewById(R.id.ll_message);
         final LinearLayout ll_to_teach = findViewById(R.id.ll_to_teach);
         final ImageButton btn_to_teach = findViewById(R.id.btn_to_teach);
+        final LinearLayout ll_progress = findViewById(R.id.progressBar_user);
+
 
         Gv = findViewById(R.id.gv_user_skills);
         Gv.setOnItemClickListener(this);
@@ -131,12 +124,12 @@ public class Activity_User_Profile extends AppCompatActivity implements AdapterV
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                fl_loading.setVisibility(View.GONE);
+                ll_progress.setVisibility(View.GONE);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
-                fl_loading.setVisibility(View.GONE);
+                ll_progress.setVisibility(View.GONE);
             }
         });
 

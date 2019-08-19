@@ -45,16 +45,6 @@ public class Activity_Login extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        //find the two frames for registering and logging in
-        final FrameLayout fl_loading = findViewById(R.id.frame_layout_loading);
-        //get fragment manager
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        //add fragment to frame
-        ft.add(R.id.frame_layout_loading, new Frag_Loading());
-        ft.commit();
-        //set initial visibility of views
-        fl_loading.setVisibility(View.GONE);
-
         //check to see if the user is already logged in
         if (currentUser != null){
             Intent login_intent = new Intent(getBaseContext(), Activity_Unition_Hub.class);
@@ -80,9 +70,6 @@ public class Activity_Login extends AppCompatActivity {
         //get shared preferences
         final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         final SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        //find the two frames for registering and logging in
-        final FrameLayout fl_loading = findViewById(R.id.frame_layout_loading);
 
         //Initialise buttons
         final Button btn_to_register = findViewById(R.id.btn_register);
@@ -115,7 +102,6 @@ public class Activity_Login extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fl_loading.setVisibility(View.VISIBLE);
                 final String email_val = etxt_l_email.getText().toString();
                 String pass_val = etxt_l_pass.getText().toString();
 
@@ -172,7 +158,6 @@ public class Activity_Login extends AppCompatActivity {
                                                     putInt("user_uni_pos",spnr_l_uni.getSelectedItemPosition()).
                                                     putInt("nav_index",0).
                                                     apply();
-                                            fl_loading.setVisibility(View.GONE);
                                             finish();
                                             startActivity(login_intent);
                                         }else{
@@ -180,7 +165,6 @@ public class Activity_Login extends AppCompatActivity {
                                             Toast.makeText(getApplicationContext(),
                                                     "Sorry, we couldn't find you at this university.",
                                                     Toast.LENGTH_SHORT).show();
-                                            fl_loading.setVisibility(View.GONE);
                                         }
                                     }
                                 });
@@ -191,18 +175,15 @@ public class Activity_Login extends AppCompatActivity {
                         mAuth.signInWithEmailAndPassword(email_val, pass_val).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                fl_loading.setVisibility(View.GONE);
                                 Toast.makeText(getApplicationContext(),
                                         "Could not sign in.", Toast.LENGTH_SHORT).show();
                             }
                         });
                     } else {
-                        fl_loading.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(),
                                 "Please fill in all your details.", Toast.LENGTH_SHORT).show();
                     }
                 } catch(Exception e){
-                    fl_loading.setVisibility(View.GONE);
                     Toast.makeText(getApplicationContext(),
                             "Sorry, we couldn't find your profile at this location.",
                             Toast.LENGTH_SHORT).show();

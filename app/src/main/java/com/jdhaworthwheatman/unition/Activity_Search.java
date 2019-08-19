@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,9 +57,6 @@ public class Activity_Search extends AppCompatActivity implements AdapterView.On
         TextView tv_skill_title = findViewById(R.id.tv_search_title);
         tv_skill_title.setText(skill_val);
 
-        Toast.makeText(getBaseContext(), "Accessing our database...", Toast.LENGTH_SHORT).show();
-
-
         users_collection.whereArrayContains("skill_list",skill_val).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -81,6 +79,8 @@ public class Activity_Search extends AppCompatActivity implements AdapterView.On
                             }
                             Adapter_Custom_Users_List adapter = new Adapter_Custom_Users_List(getBaseContext(), rowItems);
                             mylistview.setAdapter(adapter);
+                            LinearLayout ll_progress = findViewById(R.id.progressBar_search);
+                            ll_progress.setVisibility(View.GONE);
                         }
                     }
         });
