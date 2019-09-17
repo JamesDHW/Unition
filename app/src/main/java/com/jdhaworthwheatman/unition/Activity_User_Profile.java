@@ -1,21 +1,17 @@
 package com.jdhaworthwheatman.unition;
 
-import android.app.Activity;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -42,6 +38,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,10 +55,10 @@ public class Activity_User_Profile extends AppCompatActivity implements AdapterV
     long users_cost_val;
     List<Long> rating_list;
     ExpandableHeightGridView Gv;
-
+    Bitmap user_profile_pic;
 
     List<Row_Item_Skills> rowItems;
-    File localFile = new File("/data/user/0/com.jdhaworthwheatman.unition/app_imageDir", "rofile.jpg");
+    File localFile = new File("/data/user/0/com.jdhaworthwheatman.unition/app_imageDir", "Profile.jpg");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +106,6 @@ public class Activity_User_Profile extends AppCompatActivity implements AdapterV
         final ImageButton btn_to_teach = findViewById(R.id.btn_to_teach);
         final LinearLayout ll_progress = findViewById(R.id.progressBar_user);
 
-
         Gv = findViewById(R.id.gv_user_skills);
         Gv.setOnItemClickListener(this);
 
@@ -119,8 +115,8 @@ public class Activity_User_Profile extends AppCompatActivity implements AdapterV
             @Override
             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                 try {
-                    Bitmap b = BitmapFactory.decodeStream(new FileInputStream(localFile));
-                    iv_profile.setImageBitmap(b);
+                    user_profile_pic = BitmapFactory.decodeStream(new FileInputStream(localFile));
+                    iv_profile.setImageBitmap(user_profile_pic);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -183,7 +179,6 @@ public class Activity_User_Profile extends AppCompatActivity implements AdapterV
                             skill_icon_list.add(R.mipmap.ic_course);
                         }
                     }
-
 
                     for (int i = 0; i < skills_array_list.size(); i++) {
                         Row_Item_Skills item = new Row_Item_Skills(skills_array_list.get(i),skill_icon_list.get(i));

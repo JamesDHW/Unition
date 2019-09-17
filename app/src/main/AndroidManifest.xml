@@ -41,8 +41,7 @@
             android:name=".Activity_Search"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activity_User_Profile"
-            android:screenOrientation="portrait" />
+            android:name=".Activity_User_Profile" />
         <activity
             android:name=".Activity_Messaging"
             android:screenOrientation="portrait" />

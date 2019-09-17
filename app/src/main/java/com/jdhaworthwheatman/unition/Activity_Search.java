@@ -74,7 +74,7 @@ public class Activity_Search extends AppCompatActivity implements AdapterView.On
                             }
 
                             for (int i = 0; i < all_usernames.size(); i++) {
-                                Row_Item_User_List item = new Row_Item_User_List(all_usernames.get(i),all_user_ids.get(i), all_user_costs.get(i));
+                                Row_Item_User_List item = new Row_Item_User_List(all_usernames.get(i),all_user_ids.get(i), all_user_costs.get(i),null);
                                 rowItems.add(item);
                             }
                             Adapter_Custom_Users_List adapter = new Adapter_Custom_Users_List(getBaseContext(), rowItems);
