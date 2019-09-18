@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center_horizontal"
+    android:background="@color/colorDark">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ll_learn_smth_new"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:background="@color/colorPrimary"
+            android:layout_margin="3dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBackground"
+                android:layout_weight="0.5"
+                android:textSize="16sp"
+                android:padding="15dp"
+                android:text="Learn Something Different"/>
+
+            <ImageButton
+                android:id="@+id/ib_suggestion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:scaleX="0.75"
+                android:scaleY="0.75"
+                android:background="@color/colorPrimary"
+                android:src="@mipmap/ic_skills_icon"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_suggestion"
+            android:layout_margin="3dp"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/colorPrimary">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:textSize="16sp"
+                    android:padding="10dp"
+                    android:textColor="@android:color/white"
+                    android:text="Suggest a Skill to Add to Unition"/>
+
+                <ImageButton
+                    android:id="@+id/btn_close_suggestion"
+                    android:src="@mipmap/ic_close_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:scaleX="0.75"
+                    android:scaleY="0.75"
+                    android:background="@color/colorPrimary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorBackground"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:background="@color/colorBackground"
+                    android:layout_weight="1">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/etxt_suggestion"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Suggestion" />
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageButton
+                    android:id="@+id/ib_send_suggestion"
+                    android:src="@mipmap/ic_send_icon"
+                    android:scaleX="0.75"
+                    android:scaleY="0.75"
+                    android:background="@color/colorBackground"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="20dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/colorPrimary"
+                android:layout_margin="3dp"
+                android:gravity="center">
+
+                <ImageButton
+                    android:layout_weight="0.2"
+                    android:id="@+id/btn_search_my_degree"
+                    android:src="@mipmap/ic_course"
+                    android:background="@color/colorPrimary"
+                    android:scaleY="1.5"
+                    android:scaleX="1.5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="75dp"
+                    android:paddingRight="75dp"
+                    android:layout_margin="10dp"/>
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/colorBackground"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:text="Find Users on my Course"
+                    android:layout_margin="10dp"/>
+            </LinearLayout>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="0.75"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+                <com.jdhaworthwheatman.unition.ExpandableHeightGridView
+                    android:id="@+id/gv_search_skills"
+                    android:layout_width="match_parent"
+                    android:layout_margin="3dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorDark"
+                    android:numColumns="3"
+                    android:verticalSpacing="1dp"
+                    android:horizontalSpacing="1dp"
+                    android:stretchMode="columnWidth"/>
+
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

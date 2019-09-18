@@ -3,6 +3,7 @@ package com.jdhaworthwheatman.unition;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
@@ -341,6 +342,34 @@ public class Activity_Unition_Hub extends AppCompatActivity {
                 ll_suggestion.setVisibility(View.GONE);
             }
         }catch(Exception e){}
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+        int page_index = sharedPreferences.getInt("page_index",0);
+        editor.putInt("page_index",page_index).commit();
+        savedInstanceState.putInt("Page_index", page_index);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        int page_index = savedInstanceState.getInt("Page_index",0);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        if(page_index==1){
+            loadFagment(new Frag_Hub_Profile());
+            editor.putInt("page_index",1).commit();
+        }
+        else{
+            loadFagment(new Frag_Hub_Home());
+            editor.putInt("page_index",0).commit();
+
+        }
     }
 
 }
